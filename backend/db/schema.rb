@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(version: 2020_11_16_203759) do
 
   create_table "gifts", force: :cascade do |t|
     t.string "name"
-    t.integer "price"
+    t.string "price"
     t.integer "character_id"
+    t.string "img_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
