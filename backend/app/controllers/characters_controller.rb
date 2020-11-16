@@ -1,5 +1,5 @@
 class CharactersController < ApplicationController
-    before_action :character, only => [:show, :update, :destroy]
+    before_action :character, :only => [:show, :update, :destroy]
     def index 
         render json: Character.all
     end

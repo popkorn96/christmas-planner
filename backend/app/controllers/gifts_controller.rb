@@ -1,5 +1,5 @@
 class GiftsController < ApplicationController
-    before_action :gift, only => [:show, :update, :destroy]
+    before_action :gift, :only => [:show, :update, :destroy]
     def index 
         render json: Gift.all
     end
