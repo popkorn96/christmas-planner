@@ -13,7 +13,8 @@ class GiftsController < ApplicationController
         @gift.update(gift_params)
             if @gift.save
                 render json: @gift
-            else render json: {errors: @gift.errors.full_messages}
+            else 
+                render json: {errors: @gift.errors.full_messages}
         end
     end
     def destroy
