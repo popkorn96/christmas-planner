@@ -4,5 +4,5 @@
 # Examples:
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-character.create
+Character.create([{name: 'Alice', age: 12, favorite_color:'blue'},{name: 'Gerald', age: 32, favorite_color: 'orange'}, 
+{name: 'Edgar', age: 15, favorite_color: 'blue'}, {name: 'Bertha', age:75, favorite_color: 'pink'}, {name: 'Kenny', age: 20, favorite_color: 'green'}]) 
