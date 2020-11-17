@@ -18,11 +18,20 @@ class App{
         })
     }
     static postFetchCharacter(name, age, favorite_color){
-        method: "POST",
+        method: (CHARACTERS_URL, {
         body: JSON.stringify({
             name: name,
             age: age,
             favorite_color: favorite_color
-        }),
-    }
+        })
+    })}
+    static postFetchGift(name, price, img_url){
+        return fetch(GIFTS_URL, {
+        method: "POST",
+        body: JSON.stringify({
+            name: name,
+            price: price,
+            img_url: img_url,
+        })
+    })}
 }
