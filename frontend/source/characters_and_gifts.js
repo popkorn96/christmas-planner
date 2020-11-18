@@ -24,16 +24,16 @@ class CharactersAndGifts{
             gifts.forEach(gift => this.gifts.push(new Gift(gift)))
         })
         .then(() => {
+            console.log(this.gifts)
             this.renderGifts()
         })
     }
     renderCharacters(){
-        const charactersContainer = document.getElementById('character-list')
-        charactersContainer.innerHTML = this.characters.map( character => 
-            character.renderCard()).join('')
+        charArray = this.characters.map( character => character.renderCard()).join('')
+        document.getElementById('character-list').push(charArray)
     }
     renderGifts(){
-        const giftsContainer = document.getElementById('gift-list')
+        const giftsContainer = document.getElementById('full-gift-list')
         giftsContainer.innerHTML = 'Gifts'
     }
 }

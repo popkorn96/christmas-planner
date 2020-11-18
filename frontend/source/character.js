@@ -4,54 +4,41 @@ class Character{
         this.name = characterJSON.name
         this.age = characterJSON.age
         this.favorite_color = characterJSON.favorite_color
+        this.gifts = characterJSON.gifts
     }
-    renderCard() {
-        return (`
-        <div class="card" data-id=${this.id}>
-          <h2 class="card-title">${this.name}</h2>
-          <div class="card-content">
-            <p div class="card-fav-color">Age: ${this.age}</p>
-            <p div class="card-fav-color">Favorite Color: ${this.favorite_color}</p>
-            <p div class="gift-list"></p>
-            <div class="new-gift-container" data-id=${this.id}><br>
-            <button type="button">Add New Gift!</button>
-            </div>
-          </div>
-          
-        </div>
-        `)
-        function addTrainers(json) {
-            const main = document.getElementsByTagName('main')[0];
-            for (let i = 0; i < json.length; i++) {
-              const div = document.createElement('div')
-              div.className = "card"
-              div.setAttribute('data-id', json[i].id)
-              const p = document.createElement('p')
-              p.innerHTML = json[i].name
-              div.appendChild(p)
-              const button = document.createElement('button')
-              button.setAttribute('data-trainer-id', json[i].id)
-              button.innerHTML = "Add Pokemon"
-              button.addEventListener("click", addPokemon)
-              div.appendChild(button)
-              const ul = document.createElement('ul')
-              for (let j = 0; j < json[i].pokemons.length; j++) {
+        renderCard(){
+            const charactersContainer = document.getElementById('character-list')
+            const div = document.createElement('div')
+            div.className = 'card'
+            div.setAttribute('data-id', this.id)
+            const p = document.createElement('h2')
+            p.innerHTML = this.name
+            div.appendChild(p)
+            const p1 = document.createElement('p')
+            p1.innerHTML = `Age: ${this.age}`
+            div.appendChild(p1)
+            const p2 = document.createElement('p')
+            p2.innerHTML = `Favorite Color: ${this.favorite_color}`
+            div.appendChild(p2)
+            const b = document.createElement('button')
+            b.setAttribute('data-character-id', this.id)
+            b.innerHTML = "Add Gift!"
+            // button.addEventListener('click', addGift)
+            div.appendChild(b)
+            const ul = document.createElement('ul')
+            ul.innerHTML = "Planned Gifts:"
+            for(let g = 0; g < this.gifts.length; g++) {
                 const li = document.createElement('li')
-                li.innerHTML = `${json[i].pokemons[j].nickname} (${json[i].pokemons[j].species})`
+                li.innerHTML = `${this.gifts.name}, ($${this.gifts.price})`
                 const removeButton = document.createElement('button')
-                removeButton.innerHTML = "Release"
-                removeButton.className = "release"
-                removeButton.setAttribute('data-pokemon-id', json[i].pokemons[j].id)
-                removeButton.addEventListener("click", removePokemon)
+                removeButton.innerHTML = `I found a better gift for ${this.name}`
+                removeButton.className = "Remove"
+                removeButton.setAttribute('data-gift-id', this.gifts.id)
+                // removeButton.addEventListener('click', removeGift)
                 li.appendChild(removeButton)
                 ul.appendChild(li)
-              }
-              div.appendChild(ul)
-              main.appendChild(div)
             }
-          }
-    }
-    // htmlify() {
-        
-    // }
+            div.appendChild(ul)
+            charactersContainer.appendChild(div)
+        }
 }
