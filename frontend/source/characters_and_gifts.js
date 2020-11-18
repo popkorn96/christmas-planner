@@ -29,7 +29,8 @@ class CharactersAndGifts{
     }
     renderCharacters(){
         const charactersContainer = document.getElementById('character-list')
-        charactersContainer.innerText = 'Giftee'
+        charactersContainer.innerHTML = this.characters.map( character => 
+            character.renderCard()).join('')
     }
     renderGifts(){
         const giftsContainer = document.getElementById('gift-list')
