@@ -1,7 +1,8 @@
-class {
-    constructor(name, price, img_url){
-        this.name = name;
-        this.price = price;
-        this.img_url = img_url;
+class Gift{
+    constructor(giftJSON){
+        this.id = giftJSON.id
+        this.name = giftJSON.name
+        this.price = giftJSON.price
+        this.character_id = giftJSON.character_id
     }
 }

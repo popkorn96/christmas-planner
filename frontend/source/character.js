@@ -1,7 +1,7 @@
 class Character{
-    constructor(name, age, favorite_color){
-        this.name = name;
-        this.age = age;
-        this.favorite_color = favorite_color
+    constructor(characterJSON){
+        this.id = characterJSON.id
+        this.name = characterJSON.name
+        this.favorite_color = characterJSON.favorite_color
     }
 }
