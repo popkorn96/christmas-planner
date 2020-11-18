@@ -1,18 +1,19 @@
 class GiftsController < ApplicationController
     before_action :gift, :only => [:show, :update, :destroy]
     def index 
-        render json: Gift.all
+        gifts = Gift.all
+        render json: GiftSerializer.new(gifts).to_serialized_json
     end
     def create 
         render json: Gift.create(gift_params)
     end
     def show
-        render json: @gift
+        render json: GiftSerializer.new(@gift).to_serialized_json
     end
     def update
         @gift.update(gift_params)
             if @gift.save
-                render json: @gift
+                render json: GiftSerializer.new(@gift).to_serialized_json
             else 
                 render json: {errors: @gift.errors.full_messages}
         end

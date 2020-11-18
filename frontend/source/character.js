@@ -20,6 +20,36 @@ class Character{
           
         </div>
         `)
+        function addTrainers(json) {
+            const main = document.getElementsByTagName('main')[0];
+            for (let i = 0; i < json.length; i++) {
+              const div = document.createElement('div')
+              div.className = "card"
+              div.setAttribute('data-id', json[i].id)
+              const p = document.createElement('p')
+              p.innerHTML = json[i].name
+              div.appendChild(p)
+              const button = document.createElement('button')
+              button.setAttribute('data-trainer-id', json[i].id)
+              button.innerHTML = "Add Pokemon"
+              button.addEventListener("click", addPokemon)
+              div.appendChild(button)
+              const ul = document.createElement('ul')
+              for (let j = 0; j < json[i].pokemons.length; j++) {
+                const li = document.createElement('li')
+                li.innerHTML = `${json[i].pokemons[j].nickname} (${json[i].pokemons[j].species})`
+                const removeButton = document.createElement('button')
+                removeButton.innerHTML = "Release"
+                removeButton.className = "release"
+                removeButton.setAttribute('data-pokemon-id', json[i].pokemons[j].id)
+                removeButton.addEventListener("click", removePokemon)
+                li.appendChild(removeButton)
+                ul.appendChild(li)
+              }
+              div.appendChild(ul)
+              main.appendChild(div)
+            }
+          }
     }
     // htmlify() {
         

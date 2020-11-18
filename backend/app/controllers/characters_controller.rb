@@ -1,18 +1,19 @@
 class CharactersController < ApplicationController
     before_action :character, :only => [:show, :update, :destroy]
     def index 
-        render json: Character.all
+        characters = Character.all
+        render json: CharacterSerializer.new(characters).to_serialized_json
     end
     def create 
         render json: Character.create(character_params)
     end
     def show
-        render json: @character
+        render json: CharacterSerializer.new(@character).to_serialized_json
     end
     def update
         @character.update(character_params)
             if @character.save
-                render json: @character
+                render json: CharacterSerializer.new(@character).to_serialized_json
             else 
                 render json: {errors: @character.errors.full_messages}
         end
