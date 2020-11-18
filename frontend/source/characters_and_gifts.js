@@ -29,10 +29,10 @@ class CharactersAndGifts{
     }
     renderCharacters(){
         const charactersContainer = document.getElementById('character-list')
-        charactersContainer.innerText = 'my characters here'
+        charactersContainer.innerText = 'Giftee'
     }
     renderGifts(){
         const giftsContainer = document.getElementById('gift-list')
-        giftsContainer.innerHTML = 'my gifts here'
+        giftsContainer.innerHTML = 'Gifts'
     }
 }
