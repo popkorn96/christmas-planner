@@ -25,11 +25,8 @@ class App{
             }
         }).then(response => response.json())
         .then(json => {
-            Character.renderFullList(json)
-            renderNewCharacterProfile(json)
+            Character.renderCard(json)
         })
-        // let charForm = document.getElementById('new-char-form')
-        // charForm.innerHTML = ""
     }
     static postFetchGift(name, price, character_id){
         return fetch(`http://localhost:3000/gifts/`, {

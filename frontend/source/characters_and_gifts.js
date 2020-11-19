@@ -2,6 +2,7 @@ class CharactersAndGifts{
     constructor(){
         this.characters = []
         this.gifts = []
+        this.charactersContainer = document.getElementById('character-list')
         this.service = new Service()
         // this.bindEventListeners()
         this.fetchAndLoadCharacters()
@@ -25,15 +26,15 @@ class CharactersAndGifts{
         })
         .then(() => {
             console.log(this.gifts)
-            this.renderGifts()
+            // this.renderGifts()
         })
     }
     renderCharacters(){
-        charArray = this.characters.map( character => character.renderCard()).join('')
-        document.getElementById('character-list').push(charArray)
+        this.characters.map( character => 
+            character.renderCard()).join('')
     }
-    renderGifts(){
-        const giftsContainer = document.getElementById('full-gift-list')
-        giftsContainer.innerHTML = 'Gifts'
-    }
+    // renderGifts(){
+    //     const giftsContainer = document.getElementById('full-gift-list')
+    //     giftsContainer.innerHTML = 'Gifts'
+    // }
 }
