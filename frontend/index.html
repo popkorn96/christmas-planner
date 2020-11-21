@@ -5,31 +5,125 @@
     <title>Christmas Planner</title>
     <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Mountains+of+Christmas:wght@400;700&family=Roboto:wght@300&display=swap')&display=swap>">
-    <style>
-      h1 {
-        font-family: 'Mountains of Christmas', serif;
-        font-size: 80px;
-        text-align: center;
-      }
-      body {
+    <style type="text/css">
+    body {
+				margin:0;
+        padding:0;
         font-family: 'Roboto', serif;
         font-size: 20px;
+				line-height: 1.5em;
+			}
+			
+			#header {
+				background: #ccc;
+				height: 100px;
+			}
+			
+			#header h1 {
+				margin: 0;
+        padding-top: 30px;
+        font-family: 'Mountains of Christmas', serif;
+        font-size: 60px;
+        text-align: center;
+			}
+			
+			main {
+        padding-top: 30px;
+        padding-bottom: 10010px;
+				margin-bottom: -10000px;
+				float: left;
+				width: 100%;
+			}
+			
+			#nav {
+        padding-top: 60px;
+        padding-bottom: 10010px;
+        padding-left: 50px;
+				margin-bottom: -10000px;
+				float: left;
+				width: 825px;
+				margin-left: -100%;
+				background: #eee;
+			}
+			
+			#footer {
+				clear: left;
+				width: 100%;
+				background: #ccc;
+				text-align: center;
+				padding: 4px 0;
+			}
+	
+			#wrapper {
+				overflow: hidden;
+			}
+						
+			#content {
+        padding-top: 30px;
+        padding-left: 75px;
+				margin-left: 850px; /* Same as 'nav' width */
+			}
+			
+			.innertube {
+				margin: 15px; /* Padding for content */
+				margin-top: 0;
       }
+      button.button2 {
+        background-color: white;
+        color: black;
+        border: 4px solid #bb3a3a;
+        padding: 5px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+      }
+      button.button {
+        background-color: white;
+        color: black;
+        border: 4px solid #20aa55;
+        padding: 5px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+      }
+		
+			p {
+        color: #555;
+        font-size: 18px;
+			}
     </style>
   </head>
   <body>
-    <div class="top-header">
-      <h1 class="header-text">Christmas Planner</h1>
+    <header id="header">
+      <div class="innertube"> 
+      <h1>Christmas Planner</h1>
     </div>
-    <main>
-        <button id="new-character-button" type="button">Add New Giftee!</button>
-        <p id="new-character-form"></p>
+  </header>
+  <div id="wrapper">
 
-        <h2>People to Gift!</h2><br>
-        <div id="full-list"></div>
-        <div id="five"></div>
-        <div id="character-list"></div><br>
+    <main>
+      <div id="content">
+
+      <button id="new-character-button" type="button" class="button">Add New Giftee!</button>
+        <div id="forms">
+          <p id="new-character-form"></p>
+          <p id="edit-character-form"></p>
+          <p id="edit-char-form"></p>
+        </div>  
+      </div>
     </main>
+
+    <nav id="nav">
+      <h1><i>People to Gift!</i></h1><br>
+        <div id="character-list"></div><br>
+    </nav>
+    <footer id="footer">
+      <p><i>Christmas Planner</i></p>
+    </footer>
+  </div>
+  
     <script src="source/characters_and_gifts.js"></script>
     <script src="source/app.js"></script>
     <script src="source/Service.js"></script>

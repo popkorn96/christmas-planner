@@ -33,8 +33,4 @@ class CharactersAndGifts{
         this.characters.map( character => 
             character.renderCard()).join('')
     }
-    // renderGifts(){
-    //     const giftsContainer = document.getElementById('full-gift-list')
-    //     giftsContainer.innerHTML = 'Gifts'
-    // }
 }

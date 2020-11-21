@@ -11,41 +11,4 @@ class App{
       return fetch(`http://localhost:3000/gifts/${id}`)
       .then(response => response.json())
     }
-    static postFetchCharacter(name, age, favorite_color){
-        return fetch(`http://localhost:3000/characters/`, {
-            method: 'POST',
-            body: JSON.stringify({
-                name: name, 
-                age: age,
-                favorite_color: favorite_color
-            }),
-            headers: {
-                "Content-Type": 'application/json',
-                "Accept": 'application/json'
-            }
-        }).then(response => response.json())
-        .then(json => {
-            Character.renderCard(json)
-        })
-    }
-    static postFetchGift(name, price, character_id){
-        return fetch(`http://localhost:3000/gifts/`, {
-            method: 'POST',
-            body: JSON.stringify({
-                name: name, 
-                price: price,
-                character_id: character_id
-            }),
-            headers: {
-                "Content-Type": 'application/json',
-                "Accept": 'application/json'
-            }
-        }).then(response => response.json())
-        .then(json => {
-            Gift.renderFullList(json)
-            renderNewGiftProfile(json)
-        })
-        // let charForm = document.getElementById('new-char-form')
-        // charForm.innerHTML = ""
-    }
 }
