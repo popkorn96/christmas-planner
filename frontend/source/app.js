@@ -11,4 +11,8 @@ class App{
       return fetch(`http://localhost:3000/gifts/${id}`)
       .then(response => response.json())
     }
+    static topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      }
 }

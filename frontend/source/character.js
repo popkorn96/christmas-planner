@@ -15,7 +15,7 @@ class Character{
             div.setAttribute('data-id', this.id)
             const p = document.createElement('h2')
             p.setAttribute('id','char-name')
-            p.innerHTML = this.name
+            p.innerHTML = `<i>`+`${this.name}`+`</i>`
             div.appendChild(p)
             const p1 = document.createElement('p')
             p1.setAttribute('id','char-age')
@@ -29,7 +29,9 @@ class Character{
             b1.setAttribute('data-character-id', this.id)
             b1.setAttribute('class', 'button')
             b1.innerHTML = 'Add Gift!'
-            // b1.addEventListener('click', addGift)
+            b1.dataset.id = this.id
+            b1.addEventListener('click', Gift.addGiftForm)
+            b1.addEventListener('click', App.topFunction)
             div.appendChild(b1)
             const ul = document.createElement('ul')
             ul.innerHTML = 'Planned Gifts:'
@@ -41,8 +43,10 @@ class Character{
                 img.setAttribute('width', 146)
                 img.setAttribute('height', 97)
                 img.setAttribute('class', 'gift-img')
+                li.innerHTML = " "
                 
-                li.innerHTML = ` ${this.gifts[g].name}, ($${this.gifts[g].price})` + '<br>'
+                
+                li.innerHTML = ` ${this.gifts[g].name}, ($${this.gifts[g].price})`
                 li.appendChild(img)
                 li.appendChild(br)
                 const removeButton = document.createElement('button')
@@ -50,7 +54,7 @@ class Character{
                 removeButton.className = 'Remove'
                 removeButton.setAttribute('data-gift-id', this.gifts[g].id)
                 removeButton.setAttribute('class', 'button2')
-                // removeButton.addEventListener('click', removeGift) 
+                // removeButton.addEventListener('click', Gift.removeGift) 
                 li.appendChild(br)
                 li.appendChild(removeButton)
                 ul.appendChild(li)
@@ -62,12 +66,14 @@ class Character{
         b2.dataset.id = this.id
         b2.setAttribute('class', 'button2')
         b2.addEventListener('click', Character.removeCharacter)
+        b2.addEventListener('click', App.topFunction)
 
         const b3 = document.createElement('button')
         b3.innerHTML = `Edit ${this.name}'s Info`
         b3.dataset.id = this.id
         b3.setAttribute('class', 'button')
         b3.addEventListener('click', Character.editCharacter)
+        b3.addEventListener('click', App.topFunction)
 
         div.appendChild(b3)
         div.appendChild(b2)
@@ -81,7 +87,7 @@ class Character{
 
         let br = document.createElement('br')
         let h = document.createElement('h3')
-        h.innerText = `Create A New Giftee`
+        h.innerText = `Creating A New Giftee ...`
 
         let charName = document.createElement('input')
         charName.setAttribute('type', 'text')
@@ -100,15 +106,18 @@ class Character{
 
         let s = document.createElement('button')
         s.setAttribute('id', 'new-char-button')
+        s.setAttribute('class', 'button')
         s.innerHTML = `Add this Giftee!`
 
         let s2 = document.createElement('button')
         s2.setAttribute('id', 'cancel-bttn')
+        s2.setAttribute('class', 'button2')
         s2.innerHTML = `Cancel`
 
 
         addChar.appendChild(form)
 
+        form.appendChild(h)
         form.appendChild(charName)
         form.appendChild(br.cloneNode())
         form.appendChild(charAge)
@@ -125,7 +134,7 @@ class Character{
         createButton.addEventListener('click', this.makeNewChar.bind(this))
 
         let cancelButton = document.getElementById('cancel-bttn')
-        cancelButton.addEventListener('click', this.removeNewCharForm.bind(this))
+        cancelButton.addEventListener('click', CharactersAndGifts.clearForms)
     }
     static makeNewChar(e){
         e.preventDefault()
@@ -140,36 +149,41 @@ class Character{
     }
     static editCharacter(e){
         let id = e.currentTarget.dataset.id
+        let char = 
+        App.fetchOneCharacter(id).then(json => {char = json
         let charInfo = document.getElementById('edit-char-form')
         let editForm = document.createElement('form')
-        editForm.setAttribute('method', 'patch')
-        editForm.setAttribute('action', 'submit.php')
+        editForm.dataset.id = id
 
         let br = document.createElement('br')
-        let h = document.createElement('h4')
-        h.innerText = `Edit Info..`
+        let h = document.createElement('h3')
+        h.innerText = `Editing ${char.name}'s Info..`
 
         let charName = document.createElement('input')
         charName.setAttribute('type', 'text')
         charName.setAttribute('id', 'edit-char-name')
-        charName.setAttribute('placeholder', 'Name: ')
+        charName.setAttribute('value', `${char.name}`)
 
         let charAge = document.createElement('input')
         charAge.setAttribute('type', 'text')
         charAge.setAttribute('id', 'edit-char-age')
-        charAge.setAttribute('placeholder', 'Age: ')
+        charAge.setAttribute('value', `${char.age}`)
 
         let charFavColor = document.createElement('input')
         charFavColor.setAttribute('type', 'text')
         charFavColor.setAttribute('id', 'edit-char-fav-color')
-        charFavColor.setAttribute('placeholder', 'Favorite Color: ')
+        charFavColor.setAttribute('value', `${char.favorite_color}`)
 
         let s = document.createElement('button')
         s.setAttribute('id', 'submit-edit-bttn')
+        s.setAttribute('class', 'button')
         s.innerHTML = `Submit Edits`
+        s.dataset.id = this.id
+        s.addEventListener('click', Service.editChar)
 
         let s2 = document.createElement('button')
         s2.setAttribute('id', 'cancel-edits-bttn')
+        s2.setAttribute('class', 'button2')
         s2.innerHTML = `Cancel`
 
         charInfo.appendChild(editForm)
@@ -186,30 +200,19 @@ class Character{
         editForm.appendChild(br.cloneNode())
         editForm.appendChild(br.cloneNode())
         
+       document.getElementById('edit-char-name').placeholder = `Name`
+       document.getElementById('edit-char-age').placeholder = `Age`
+       document.getElementById('edit-char-fav-color').placeholder = `Favorite Color`
 
-        let currentName = document.getElementById('char-name').innerHTML
-        let currentAge = document.getElementById('char-age').innerHTML
-        let currentFavColor = document.getElementById('char-fav-color').innerHTML
-       document.getElementById('edit-char-name').placeholder = currentName
-       document.getElementById('edit-char-age').placeholder = currentAge
-       document.getElementById('edit-char-fav-color').placeholder = currentFavColor
-
-        let editButton = document.getElementById('submit-edit-bttn')
-        editButton.dataset.id = this.id
-        editButton.addEventListener('click', this.editChar)
-
-        let cancelButton = document.getElementById('cancel-edits-bttn')
-        cancelButton.addEventListener('click', this.removeEditCharForm)
+        
+        let cancel = document.getElementById('cancel-edits-bttn')
+        cancel.addEventListener('click', CharactersAndGifts.clearForms)
+        let submitButton = document.getElementById('submit-edit-bttn')
+        submitButton.dataset.id = id
+        submitButton.addEventListener('click', Service.patchEditChar)
         
         console.log(`${id}`)
-    }
-    static removeNewCharForm(){
-        let newCharForm = document.getElementById('new-character-form')
-        newCharForm.innerHTML = ""
-    }
-    static removeEditCharForm(){
-        let editCharForm = document.getElementById('edit-char-form')
-        editCharForm.innerHTML = ""
+    })
     }
     static removeCharacter(e){
         let id = e.currentTarget.dataset.id
@@ -226,24 +229,5 @@ class Character{
             console.log(`character removed..`)
         })
     }
-    static editChar(e){
-        let id = e.currentTarget.dataset.id
-        let name = document.getElementById('edit-char-name').value
-        let age = document.getElementById('edit-char-age').value
-        let favorite_color = document.getElementById('edit-char-fav-color').value
-    fetch(`http://localhost:3000/characters/${id}`, {
-      method: "PATCH",
-      headers: {"Content-type": "application/json",
-                "Accept": "application/json"
-            },
-      body: JSON.stringify ({
-        name: name,
-        age: age,
-        favorite_color: favorite_color
-      })
-    }).then(response => response.json())
-    .then(json => {
-      renderNewTripProfile(json)
-    })
-    }
+
 }

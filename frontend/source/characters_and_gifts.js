@@ -33,4 +33,14 @@ class CharactersAndGifts{
         this.characters.map( character => 
             character.renderCard()).join('')
     }
+    static clearForms(){
+        let newCharForm = document.getElementById('new-character-form')
+        newCharForm.innerHTML = ""
+        let newGiftForm = document.getElementById('new-gift-form')
+        newGiftForm.innerHTML = ""
+        let editCharForm = document.getElementById('edit-char-form')
+        editCharForm.innerHTML = ""
+        let editCharForm2 = document.getElementById('edit-character-form')
+        editCharForm2.innerHTML = ""
+    }
 }

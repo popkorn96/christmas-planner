@@ -15,15 +15,15 @@
 			}
 			
 			#header {
-				background: #ccc;
-				height: 100px;
+				background:  url("images/Banner_3.gif");
+				height: 200px;
 			}
 			
 			#header h1 {
 				margin: 0;
-        padding-top: 30px;
+        padding-top: 80px;
         font-family: 'Mountains of Christmas', serif;
-        font-size: 60px;
+        font-size: 80px;
         text-align: center;
 			}
 			
@@ -32,7 +32,8 @@
         padding-bottom: 10010px;
 				margin-bottom: -10000px;
 				float: left;
-				width: 100%;
+        width: 100%;
+        background:rgb(174, 173, 173)
 			}
 			
 			#nav {
@@ -43,19 +44,22 @@
 				float: left;
 				width: 825px;
 				margin-left: -100%;
-				background: #eee;
+				background: rgb(255, 255, 255);
 			}
 			
 			#footer {
+        position: absolute;
+        bottom: 0;
 				clear: left;
 				width: 100%;
-				background: #ccc;
+				background: rgb(169, 211, 188);
 				text-align: center;
 				padding: 4px 0;
 			}
 	
 			#wrapper {
-				overflow: hidden;
+        overflow: hidden;
+        position:relative;
 			}
 						
 			#content {
@@ -88,17 +92,44 @@
         display: inline-block;
         font-size: 18px;
       }
-		
+      button.button:hover {
+        background-color: rgb(167, 164, 164); /* Add a dark-grey background on hover */
+      }
+      button.button2:hover {
+        background-color: rgb(167, 164, 164); /* Add a dark-grey background on hover */
+      }
+      img {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        width: 150px;
+      }
+      img:hover {
+        transform: scaleX(-1);
+      }
+      input {
+        width: 95%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        font-size: 18px;
+      }
+      input::placeholder {
+        font-size: 18px;
+      }
 			p {
         color: #555;
-        font-size: 18px;
+        font-family: 'Roboto', serif;
+        font-size: 20px;
+				line-height: 1.5em;
+        
 			}
     </style>
   </head>
   <body>
     <header id="header">
       <div class="innertube"> 
-      <h1>Christmas Planner</h1>
+      <h1><u>Christmas Planner</u></h1>
     </div>
   </header>
   <div id="wrapper">
@@ -107,17 +138,20 @@
       <div id="content">
 
       <button id="new-character-button" type="button" class="button">Add New Giftee!</button>
+      <button id="clear-forms-button"class="clear-forms-button">Clear All</button>
         <div id="forms">
           <p id="new-character-form"></p>
           <p id="edit-character-form"></p>
           <p id="edit-char-form"></p>
+          <p id="new-gift-form"></p>
         </div>  
       </div>
     </main>
 
     <nav id="nav">
-      <h1><i>People to Gift!</i></h1><br>
+      <h1>People to Gift!</h1><br>
         <div id="character-list"></div><br>
+        <br><br><br><br><br><br>
     </nav>
     <footer id="footer">
       <p><i>Christmas Planner</i></p>
