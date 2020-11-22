@@ -32,19 +32,13 @@ class Service{
             console.log(`characters rendered..`)
         })
     }
-    static postFetchGift(e){
-        console.log('getting closer..')
-        let charId = e.currentTarget.dataset.id
-        let name = document.getElementById('new-gift-name').value
-        let price = document.getElementById('new-gift-price').value
-        let img_url = document.getElementById('new-gift-img').value
-        console.log(`postFetching ${charId}`)
-        console.log(`queen bee ${name}`)
+    static postFetchGift(name, price, img_url, charId){
+        console.log(`intended for ${id}`)
         return fetch(`http://localhost:3000/gifts/`, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                "Content-Type": "application/json",
+                "Accept": "application/json"
             },
             body: JSON.stringify({
                 name: name,
@@ -60,6 +54,10 @@ class Service{
             newGift.renderCharacters(json)
             console.log(`gifts rendered..`)
         })
+        .catch((error) => {
+            console.error('Error:', error);
+          })
+        
     }
     static editChar(e){
         e.preventDefault()
