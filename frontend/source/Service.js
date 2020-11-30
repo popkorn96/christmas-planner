@@ -33,7 +33,7 @@ class Service{
         })
     }
     static postFetchGift(name, price, img_url, charId){
-        console.log(`intended for ${id}`)
+        console.log(`intended for ${charId}`)
         return fetch(`http://localhost:3000/gifts/`, {
             method: "POST",
             headers: {
@@ -48,16 +48,13 @@ class Service{
             })
         })
         .then(response => response.json())
-        .then(json => {       
-            CharactersAndGifts.clearForms()
+        .then(json => {
+            let list = document.getElementById("character-list")
+            list.innerHTML = ""
             let newGift = new CharactersAndGifts()
             newGift.renderCharacters(json)
             console.log(`gifts rendered..`)
         })
-        .catch((error) => {
-            console.error('Error:', error);
-          })
-        
     }
     static editChar(e){
         e.preventDefault()

@@ -9,13 +9,16 @@ class Gift{
     static addGiftForm(e){
         let id = e.currentTarget.dataset.id
         console.log(`adding gifts hehe .. ${id}`)
+        let char =
+        App.fetchOneCharacter(id).then(json => {char = json
         let addGift = document.getElementById('new-gift-form')
         let form = document.createElement('form')
         form.setAttribute('method', 'post')
+        form.dataset.id = id 
 
         let br = document.createElement('br')
         let h = document.createElement('h3')
-        h.innerText = 'Create a New Gift'
+        h.innerText = `Create a New Gift for ${char.name} ..`
 
         let giftName = document.createElement('input')
         giftName.setAttribute('type', 'text')
@@ -57,13 +60,15 @@ class Gift{
         form.appendChild(br.cloneNode())
 
         let createButton = document.getElementById('new-gift-button')
-        createButton.addEventListener('click', Gift.addGift(id))
+        createButton.dataset.id = id
+        createButton.addEventListener('click', Gift.makeNewGift)
 
         let cancelButton = document.getElementById('cancel-bttn')
         cancelButton.addEventListener('click', CharactersAndGifts.clearForms)
+    })
     }
-    static addGift(e){
-        const charId = e.currentTarget.dataset.id
+    static makeNewGift(e){
+        let charId = e.currentTarget.dataset.id
         console.log('getting closer.. ')
         let giftName = document.getElementById('new-gift-name').value
         let giftPrice = document.getElementById('new-gift-price').value
