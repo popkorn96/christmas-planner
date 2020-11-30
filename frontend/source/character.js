@@ -59,7 +59,6 @@ class Character{
                 removeButton.addEventListener('click', Gift.removeGift)
                 removeButton.addEventListener('click', App.topFunction) 
                 li.appendChild(removeButton)
-                li.innerHTML += `<br><br><br>`
                 ul.appendChild(li)
             }
         div.appendChild(ul)
