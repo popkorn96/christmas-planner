@@ -15,7 +15,7 @@ class Character{
             div.setAttribute('data-id', this.id)
             const p = document.createElement('h2')
             p.setAttribute('id','char-name')
-            p.innerHTML = `<i>`+`${this.name}`+`</i>`
+            p.innerHTML = `<br><i>`+`${this.name}`+`</i><br>`
             div.appendChild(p)
             const p1 = document.createElement('p')
             p1.setAttribute('id','char-age')
