@@ -26,6 +26,6 @@ class GiftsController < ApplicationController
         @gift = Gift.find(params[:id])
     end
     def gift_params
-        params.permit(:name, :price, :character_id, :img_url)
+        params.permit(:name, :price, :img_url, :character_id)
     end
 end

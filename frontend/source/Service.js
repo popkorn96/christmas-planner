@@ -64,11 +64,7 @@ class Service{
         let charId = e.currentTarget.dataset.id
         console.log(`${charId}`)
         let formInputs = e.currentTarget.parentNode.querySelectorAll('input')
-        Service.patchEditChar(charId, formInputs[0].value, formInputs[1].value, formInputs[2].value).then(json => {
-            let renderNew = new CharactersAndGifts()
-            renderNew.renderCharacters(json)
-            console.log(`yes?`)
-        })
+        Service.patchEditChar(charId, formInputs[0].value, formInputs[1].value, formInputs[2].value)
     }
     static patchEditChar(id, name, age, favorite_color){
         return fetch(`http://localhost:3000/characters/${id}`, {
@@ -84,6 +80,13 @@ class Service{
                 },
             })
             .then(response => response.json())
+            .then(json => {
+                let list = document.getElementById("character-list")
+                list.innerHTML = ""
+                let renderNew = new CharactersAndGifts()
+                renderNew.renderCharacters(json)
+                console.log(`yes?`)
+            })
     }
     // static deleteTrip(event) {
     //     let id = event.currentTarget.dataset.id

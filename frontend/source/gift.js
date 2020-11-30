@@ -57,15 +57,14 @@ class Gift{
         form.appendChild(br.cloneNode())
 
         let createButton = document.getElementById('new-gift-button')
-        createButton.setAttribute('data-id', id)
-        createButton.addEventListener('click', Gift.addGift)
+        createButton.addEventListener('click', Gift.addGift(id))
 
         let cancelButton = document.getElementById('cancel-bttn')
         cancelButton.addEventListener('click', CharactersAndGifts.clearForms)
     }
     static addGift(e){
-        console.log('getting closer..')
-        var charId = e.currentTarget.dataset.id
+        const charId = e.currentTarget.dataset.id
+        console.log('getting closer.. ')
         let giftName = document.getElementById('new-gift-name').value
         let giftPrice = document.getElementById('new-gift-price').value
         let giftImg = document.getElementById('new-gift-img').value

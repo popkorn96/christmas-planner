@@ -209,7 +209,7 @@ class Character{
         cancel.addEventListener('click', CharactersAndGifts.clearForms)
         let submitButton = document.getElementById('submit-edit-bttn')
         submitButton.dataset.id = id
-        submitButton.addEventListener('click', Service.patchEditChar)
+        submitButton.addEventListener('click', Service.patchEditChar(id))
         
         console.log(`${id}`)
     })
