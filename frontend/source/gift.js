@@ -76,4 +76,34 @@ class Gift{
         Service.postFetchGift(giftName, giftPrice, giftImg, charId)
         CharactersAndGifts.clearForms()
     }
+    static removeGift(e){
+        let id = e.currentTarget.dataset.id
+        fetch(`http:/localhost:3000/gifts/${id}`, {
+            method: "DELETE"
+        })
+        .then(response => response.json())
+        .then(json => {
+            console.log(`you're in gifts delete..`)
+            let giftInfo = document.querySelector('[data-gift-id="' + id + '"]')
+            giftInfo.innerHTML = ""
+            let container = document.getElementById('gift-list')
+            container.removeChild(giftInfo)
+            console.log(`gift removed`)
+        })
+    }
+    static removeCharacter(e){
+        let id = e.currentTarget.dataset.id
+        fetch(`http://localhost:3000/characters/${id}`, {
+        method: "DELETE"
+        })
+        .then(response => response.json())
+        .then(json => {
+            console.log(`you're in delete`)
+            let charInfo = document.querySelector('[data-gift-id="' + id + '"]')
+            charInfo.innerHTML = ""
+            let container = document.getElementById('gift')
+            container.removeChild(giftInfo)
+            console.log(`character removed..`)
+        })
+    }
 }

@@ -34,9 +34,11 @@ class Character{
             b1.addEventListener('click', App.topFunction)
             div.appendChild(b1)
             const ul = document.createElement('ul')
+            ul.setAttribute('id', 'gift-list')
             ul.innerHTML = 'Planned Gifts:'
             for(let g = 0; g < this.gifts.length; g++) {
                 const li = document.createElement('li')
+                li.setAttribute('data-gift-id', this.gifts[g].id)
                 let img = document.createElement('img')
                 
                 img.setAttribute('src', this.gifts[g].img_url)
@@ -46,17 +48,18 @@ class Character{
                 li.innerHTML = " "
                 
                 
-                li.innerHTML = ` ${this.gifts[g].name}, ($${this.gifts[g].price})`
-                li.appendChild(img)
-                li.appendChild(br)
+                li.innerHTML = ` ${this.gifts[g].name} - ($${this.gifts[g].price}) <br>`
+                li.appendChild(img) 
+                li.innerHTML += `<br>`
                 const removeButton = document.createElement('button')
                 removeButton.innerHTML = `Remove '${this.gifts[g].name}' ..`
                 removeButton.className = 'Remove'
-                removeButton.setAttribute('data-gift-id', this.gifts[g].id)
+                removeButton.dataset.id = this.gifts[g].id
                 removeButton.setAttribute('class', 'button2')
-                // removeButton.addEventListener('click', Gift.removeGift) 
-                li.appendChild(br)
+                removeButton.addEventListener('click', Gift.removeGift)
+                removeButton.addEventListener('click', App.topFunction) 
                 li.appendChild(removeButton)
+                li.innerHTML += `<br><br><br>`
                 ul.appendChild(li)
             }
         div.appendChild(ul)
@@ -86,7 +89,7 @@ class Character{
         form.setAttribute('action', 'submit.php') 
 
         let br = document.createElement('br')
-        let h = document.createElement('h3')
+        let h = document.createElement('h4')
         h.innerText = `Creating A New Giftee ...`
 
         let charName = document.createElement('input')
@@ -156,7 +159,7 @@ class Character{
         editForm.dataset.id = id
 
         let br = document.createElement('br')
-        let h = document.createElement('h3')
+        let h = document.createElement('h4')
         h.innerText = `Editing ${char.name}'s Info..`
 
         let charName = document.createElement('input')
